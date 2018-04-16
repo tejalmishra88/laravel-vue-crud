@@ -8,11 +8,12 @@
                     </div>
                     <div class="panel-body">
                         <ul class="list-group">
-                            <li class="list-group-item"  v-for= "t in tasks">{{ t.id }} - {{ t.name }} <span
+                            <li class="list-group-item"  v-for= "t in tasks.data">{{ t.id }} - {{ t.name }} <span
                              class="pull-right"><button class="btn btn-primary btn-xs">Add</button> |
                               <button class="btn btn-danger btn-xs">Delete</button> | 
                               <button class="btn btn-info btn-xs">preview</button></span></li>
                         </ul>
+                        <pagination :data="tasks" v-on:pagination-change-page="getResults"></pagination>
                     </div>
                     <div class="panel-footer text-right"><small>copyrights 2018
                         </small></div>
@@ -22,6 +23,7 @@
     </div>
 </template>
 <script type="text/javascript">
+Vue.component('pagination', require('laravel-vue-pagination'));
 export default{
     data(){
         return{
@@ -29,8 +31,18 @@ export default{
         }
     },
     methods:{
+        getResults(page) {
+			if (typeof page === 'undefined') {
+				page = 1;
+			}
 
-    },
+			// Using vue-resource as an example
+			axios.get('http://127.0.0.1:8000?page=' + page)
+                .then(response => this.tasks =response.data)
+                .catch(error => console.log(error));
+			}
+	    },
+    
     created(){
         axios.get('http://127.0.0.1:8000/tasks')
         .then((response) => this.tasks = response.data)

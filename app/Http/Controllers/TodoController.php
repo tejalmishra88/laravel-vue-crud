@@ -14,10 +14,10 @@ class TodoController extends Controller
      */
     public function index()
     {
-        $tasks = 'App\todo'::all();
+        $tasks = todo::paginate(2);
         return request()->json(200,$tasks);
      //   return todo::all();
-        // return  $tasksccc;
+        //y return  $tasksccc;
      //  return "ffffff";
     }
 

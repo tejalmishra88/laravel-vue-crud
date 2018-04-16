@@ -1382,7 +1382,7 @@ module.exports = Cancel;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(13);
-module.exports = __webpack_require__(58);
+module.exports = __webpack_require__(59);
 
 
 /***/ }),
@@ -46521,7 +46521,7 @@ var normalizeComponent = __webpack_require__(5)
 /* script */
 var __vue_script__ = __webpack_require__(56)
 /* template */
-var __vue_template__ = __webpack_require__(57)
+var __vue_template__ = __webpack_require__(58)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -46594,7 +46594,7 @@ exports = module.exports = __webpack_require__(3)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -46628,7 +46628,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
+Vue.component('pagination', __webpack_require__(57));
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
@@ -46636,12 +46638,28 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         };
     },
 
-    methods: {},
+    methods: {
+        getResults: function getResults(page) {
+            var _this = this;
+
+            if (typeof page === 'undefined') {
+                page = 1;
+            }
+
+            // Using vue-resource as an example
+            axios.get('http://127.0.0.1:8000?page=' + page).then(function (response) {
+                return _this.tasks = response.data;
+            }).catch(function (error) {
+                return console.log(error);
+            });
+        }
+    },
+
     created: function created() {
-        var _this = this;
+        var _this2 = this;
 
         axios.get('http://127.0.0.1:8000/tasks').then(function (response) {
-            return _this.tasks = response.data;
+            return _this2.tasks = response.data;
         }).catch(function (error) {
             return console.log(error);
         });
@@ -46651,6 +46669,106 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 /* 57 */
+/***/ (function(module, exports) {
+
+module.exports = {
+	props: {
+		data: {
+			type: Object,
+			default: function() {
+				return {
+					current_page: 1,
+					data: [],
+					from: 1,
+					last_page: 1,
+					next_page_url: null,
+					per_page: 10,
+					prev_page_url: null,
+					to: 1,
+					total: 0,
+				}
+			}
+		},
+		limit: {
+			type: Number,
+			default: 0
+		}
+	},
+
+	template: '<ul class="pagination" v-if="data.total > data.per_page">\
+		<li class="page-item pagination-prev-nav" v-if="data.prev_page_url">\
+			<a class="page-link" href="#" aria-label="Previous" @click.prevent="selectPage(--data.current_page)">\
+				<slot name="prev-nav">\
+					<span aria-hidden="true">&laquo;</span>\
+					<span class="sr-only">Previous</span>\
+				</slot>\
+			</a>\
+		</li>\
+		<li class="page-item pagination-page-nav" v-for="n in getPages()" :class="{ \'active\': n == data.current_page }">\
+			<a class="page-link" href="#" @click.prevent="selectPage(n)">{{ n }}</a>\
+		</li>\
+		<li class="page-item pagination-next-nav" v-if="data.next_page_url">\
+			<a class="page-link" href="#" aria-label="Next" @click.prevent="selectPage(++data.current_page)">\
+				<slot name="next-nav">\
+					<span aria-hidden="true">&raquo;</span>\
+					<span class="sr-only">Next</span>\
+				</slot>\
+			</a>\
+		</li>\
+	</ul>',
+
+	methods: {
+		selectPage: function(page) {
+			if (page === '...') {
+				return;
+			}
+
+			this.$emit('pagination-change-page', page);
+		},
+		getPages: function() {
+			if (this.limit === -1) {
+				return 0;
+			}
+
+			if (this.limit === 0) {
+				return this.data.last_page;
+			}
+
+			var current = this.data.current_page,
+				last = this.data.last_page,
+				delta = this.limit,
+				left = current - delta,
+				right = current + delta + 1,
+				range = [],
+				pages = [],
+				l;
+
+			for (var i = 1; i <= last; i++) {
+				if (i == 1 || i == last || (i >= left && i < right)) {
+					range.push(i);
+				}
+			}
+
+			range.forEach(function (i) {
+				if (l) {
+					if (i - l === 2) {
+						pages.push(l + 1);
+					} else if (i - l !== 1) {
+						pages.push('...');
+					}
+				}
+				pages.push(i);
+				l = i;
+			});
+
+			return pages;
+		}
+	}
+};
+
+
+/***/ }),
+/* 58 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -46663,18 +46781,28 @@ var render = function() {
         _c("div", { staticClass: "panel panel-primary" }, [
           _vm._m(0),
           _vm._v(" "),
-          _c("div", { staticClass: "panel-body" }, [
-            _c(
-              "ul",
-              { staticClass: "list-group" },
-              _vm._l(_vm.tasks, function(t) {
-                return _c("li", { staticClass: "list-group-item" }, [
-                  _vm._v(_vm._s(t.id) + " - " + _vm._s(t.name) + " "),
-                  _vm._m(1, true)
-                ])
+          _c(
+            "div",
+            { staticClass: "panel-body" },
+            [
+              _c(
+                "ul",
+                { staticClass: "list-group" },
+                _vm._l(_vm.tasks.data, function(t) {
+                  return _c("li", { staticClass: "list-group-item" }, [
+                    _vm._v(_vm._s(t.id) + " - " + _vm._s(t.name) + " "),
+                    _vm._m(1, true)
+                  ])
+                })
+              ),
+              _vm._v(" "),
+              _c("pagination", {
+                attrs: { data: _vm.tasks },
+                on: { "pagination-change-page": _vm.getResults }
               })
-            )
-          ]),
+            ],
+            1
+          ),
           _vm._v(" "),
           _vm._m(2)
         ])
@@ -46729,7 +46857,7 @@ if (false) {
 }
 
 /***/ }),
-/* 58 */
+/* 59 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
