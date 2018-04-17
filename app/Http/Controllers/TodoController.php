@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\todo;
 use Illuminate\Http\Request;
-use App\Http\Request\todorequest;
+use App\Http\Requests\todorequest;
 class TodoController extends Controller
 {
     /**
@@ -14,11 +14,9 @@ class TodoController extends Controller
      */
     public function index()
     {
-        $tasks = todo::paginate(2);
+        $tasks = todo::orderBy('id', 'desc')->paginate(3);
         return request()->json(200,$tasks);
      //   return todo::all();
-        //y return  $tasksccc;
-     //  return "ffffff";
     }
 
     /**
@@ -37,9 +35,16 @@ class TodoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(todorequest $request)
-    {
-        //
+    public function store(todorequest $t1)
+    { 
+        $t1 = todo::create($t1->all());
+        if($t1){
+            $tasks = todo::orderBy('id','desc')->paginate(3);
+         
+            return request()->json(200,$tasks);
+          // return "gggggggg";
+        }
+        
     }
 
     /**
