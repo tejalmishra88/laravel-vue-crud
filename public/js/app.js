@@ -46862,7 +46862,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -46896,11 +46896,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
             success: '',
+            error: [],
             record: ''
         };
     },
@@ -46915,10 +46920,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             axios.post("http://127.0.0.1:8000/tasks", { 'name': this.record }).then(function (data) {
                 _this.$emit('recordadded', data);
                 _this.success = "Task Added Successfully...";
+                _this.record = '';
             }).catch(function (error) {
-                return console.log(error);
+                _this.error = error.response.data;
+                console.log(_this.error);
             });
-            this.record = '';
         }
     }
 
@@ -46966,7 +46972,19 @@ var render = function() {
                 _vm.record = $event.target.value
               }
             }
-          })
+          }),
+          _vm._v(" "),
+          _vm.error.length > 0
+            ? _c(
+                "ul",
+                { staticClass: "list-unstyled" },
+                _vm._l(_vm.error.name, function(err) {
+                  return _c("li", { staticClass: "alert alert-danger" }, [
+                    _vm._v(_vm._s(err))
+                  ])
+                })
+              )
+            : _vm._e()
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "modal-footer" }, [

@@ -12,6 +12,10 @@
                        <p class="alert alert-success" v-if="success.length > 0">{{ success}}</p>
                        <label for="name">add new task</label>
                        <textarea name="name" id="name" class="form-control" v-model="record"></textarea>
+                       <ul v-if="error.length > 0" class="list-unstyled">
+                           <li v-for="err of error.name" class= "alert alert-danger" >{{ err }}</li>
+                       </ul>
+
                    </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -26,6 +30,7 @@ export default {
     data(){
         return{
             success:'',
+            error:[],
             record:'',
         }
     },
@@ -37,9 +42,13 @@ export default {
             axios.post("http://127.0.0.1:8000/tasks",{ 'name':this.record,})
                 .then(data =>{ this.$emit('recordadded', data);
                                  this.success = "Task Added Successfully..."; 
+                                 this.record='';
                             })
-                .catch(error =>console.log(error))
-                this.record='';
+                .catch(error => {
+                     this.error = error.response.data;
+                     console.log ( this.error );
+                         })
+                
             
         }
     }
