@@ -46862,7 +46862,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -46899,35 +46899,34 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    data: function data() {
-        return {
-            success: '',
-            error: [],
-            record: ''
-        };
+  data: function data() {
+    return { success: '', errors: [], record: '' };
+  },
+
+  methods: {
+    addRecord: function addRecord() {
+      var _this = this;
+
+      console.log('this.record=', this.record);
+      axios.post("http://127.0.0.1:8000/tasks", {
+        'name': this.record
+      }).then(function (data) {
+        _this.$emit('recordadded', data);
+        _this.success = "Task Added Successfully...";
+        _this.record = '';
+      }).catch(function (error) {
+        return _this.errors = error.response.data.errors;
+      });
     },
-
-    methods: {
-        addRecord: function addRecord() {
-            var _this = this;
-
-            console.log('this.record=', this.record);
-            // axios.get("http://127.0.0.1:8000/tasks/create");
-
-            axios.post("http://127.0.0.1:8000/tasks", { 'name': this.record }).then(function (data) {
-                _this.$emit('recordadded', data);
-                _this.success = "Task Added Successfully...";
-                _this.record = '';
-            }).catch(function (error) {
-                _this.error = error.response.data;
-                console.log(_this.error);
-            });
-        }
+    clearmodal: function clearmodal() {
+      this.error = [];
+      console.log('this.error=', this.error);
+      this.record = '';
+      this.success = '';
     }
-
+  }
 });
 
 /***/ }),
@@ -46941,7 +46940,23 @@ var render = function() {
   return _c("div", { staticClass: "modal fade", attrs: { id: "addmodal" } }, [
     _c("div", { staticClass: "modal-dialog" }, [
       _c("div", { staticClass: "modal-content" }, [
-        _vm._m(0),
+        _c("div", { staticClass: "modal-header" }, [
+          _c(
+            "button",
+            {
+              staticClass: "close",
+              attrs: {
+                type: "button",
+                "data-dismiss": "modal",
+                "aria-hidden": "true"
+              },
+              on: { click: _vm.clearmodal }
+            },
+            [_vm._v("×\n                      ")]
+          ),
+          _vm._v(" "),
+          _c("h4", { staticClass: "modal-title" }, [_vm._v("Add New Record!")])
+        ]),
         _vm._v(" "),
         _c("div", { staticClass: "modal-body" }, [
           _vm.success.length > 0
@@ -46974,11 +46989,11 @@ var render = function() {
             }
           }),
           _vm._v(" "),
-          _vm.error.length > 0
+          _vm.errors.name
             ? _c(
                 "ul",
                 { staticClass: "list-unstyled" },
-                _vm._l(_vm.error.name, function(err) {
+                _vm._l(_vm.errors.name, function(err) {
                   return _c("li", { staticClass: "alert alert-danger" }, [
                     _vm._v(_vm._s(err))
                   ])
@@ -46992,9 +47007,10 @@ var render = function() {
             "button",
             {
               staticClass: "btn btn-default",
-              attrs: { type: "button", "data-dismiss": "modal" }
+              attrs: { type: "button", "data-dismiss": "modal" },
+              on: { click: _vm.clearmodal }
             },
-            [_vm._v("Close")]
+            [_vm._v("\n                                Close")]
           ),
           _vm._v(" "),
           _c(
@@ -47011,29 +47027,7 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-header" }, [
-      _c(
-        "button",
-        {
-          staticClass: "close",
-          attrs: {
-            type: "button",
-            "data-dismiss": "modal",
-            "aria-hidden": "true"
-          }
-        },
-        [_vm._v("×\n                ")]
-      ),
-      _vm._v(" "),
-      _c("h4", { staticClass: "modal-title" }, [_vm._v("Add New Record!")])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
