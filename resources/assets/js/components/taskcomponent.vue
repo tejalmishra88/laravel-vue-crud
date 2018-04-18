@@ -8,9 +8,9 @@
                     <div class="panel-body">
                         <ul class="list-group">
                             <li class="list-group-item"  v-for= "t in tasks.data">{{ t.id }} - {{ t.name }} <span
-                             class="pull-right"><a class="btn btn-primary btn-xs">Add</a> |
-                              <a class="btn btn-danger btn-xs">Delete</a> | 
-                              <a class="btn btn-info btn-xs">preview</a></span></li>
+                             class="pull-right"><a data-toggle="modal" href="#editmodal" class="btn btn-primary btn-xs">Add</a> |
+                              <button @click="delRecord(t.id)" class="btn btn-danger btn-xs">Delete</button> | 
+                              <a class="btn btn-info btn-xs" data-toggle="modal" href="#viewmodal">preview</a></span></li>
                         </ul>
                         <pagination :data="tasks" v-on:pagination-change-page="getResults"></pagination>
                     </div>

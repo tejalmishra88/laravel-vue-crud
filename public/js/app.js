@@ -47061,7 +47061,38 @@ var render = function() {
                 _vm._l(_vm.tasks.data, function(t) {
                   return _c("li", { staticClass: "list-group-item" }, [
                     _vm._v(_vm._s(t.id) + " - " + _vm._s(t.name) + " "),
-                    _vm._m(1, true)
+                    _c("span", { staticClass: "pull-right" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "btn btn-primary btn-xs",
+                          attrs: { "data-toggle": "modal", href: "#editmodal" }
+                        },
+                        [_vm._v("Add")]
+                      ),
+                      _vm._v(" |\n                            "),
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-danger btn-xs",
+                          on: {
+                            click: function($event) {
+                              _vm.delRecord(t.id)
+                            }
+                          }
+                        },
+                        [_vm._v("Delete")]
+                      ),
+                      _vm._v(" | \n                            "),
+                      _c(
+                        "a",
+                        {
+                          staticClass: "btn btn-info btn-xs",
+                          attrs: { "data-toggle": "modal", href: "#viewmodal" }
+                        },
+                        [_vm._v("preview")]
+                      )
+                    ])
                   ])
                 })
               ),
@@ -47074,7 +47105,7 @@ var render = function() {
             1
           ),
           _vm._v(" "),
-          _vm._m(2)
+          _vm._m(1)
         ])
       ])
     ]),
@@ -47106,18 +47137,6 @@ var staticRenderFns = [
           )
         ])
       ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("span", { staticClass: "pull-right" }, [
-      _c("a", { staticClass: "btn btn-primary btn-xs" }, [_vm._v("Add")]),
-      _vm._v(" |\n                            "),
-      _c("a", { staticClass: "btn btn-danger btn-xs" }, [_vm._v("Delete")]),
-      _vm._v(" | \n                            "),
-      _c("a", { staticClass: "btn btn-info btn-xs" }, [_vm._v("preview")])
     ])
   },
   function() {
