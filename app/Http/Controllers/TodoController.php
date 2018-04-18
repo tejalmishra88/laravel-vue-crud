@@ -66,6 +66,7 @@ class TodoController extends Controller
      */
     public function edit(todo $todo)
     {
+        return request()->json(200,$tasks);
         //
     }
 

@@ -47113,13 +47113,11 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("span", { staticClass: "pull-right" }, [
-      _c("button", { staticClass: "btn btn-primary btn-xs" }, [_vm._v("Add")]),
+      _c("a", { staticClass: "btn btn-primary btn-xs" }, [_vm._v("Add")]),
       _vm._v(" |\n                            "),
-      _c("button", { staticClass: "btn btn-danger btn-xs" }, [
-        _vm._v("Delete")
-      ]),
+      _c("a", { staticClass: "btn btn-danger btn-xs" }, [_vm._v("Delete")]),
       _vm._v(" | \n                            "),
-      _c("button", { staticClass: "btn btn-info btn-xs" }, [_vm._v("preview")])
+      _c("a", { staticClass: "btn btn-info btn-xs" }, [_vm._v("preview")])
     ])
   },
   function() {
