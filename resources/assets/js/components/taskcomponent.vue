@@ -10,7 +10,7 @@
                             <li class="list-group-item"  v-for= "t in tasks.data">{{ t.id }} - {{ t.name }} <span
                              class="pull-right"><a data-toggle="modal" href="#editmodal" class="btn btn-primary btn-xs" @click="getRecord(t.id)">Edit</a> |
                               <button @click="delRecord(t.id)" class="btn btn-danger btn-xs">Delete</button> | 
-                              <a class="btn btn-info btn-xs" data-toggle="modal" href="#viewmodal">preview</a></span></li>
+                              <a class="btn btn-info btn-xs" data-toggle="modal" href="#viewmodal" @click="getRecord(t.id)">preview</a></span></li>
                         </ul>
                         <pagination :data="tasks" v-on:pagination-change-page="getResults"></pagination>
                     </div>
@@ -22,7 +22,9 @@
             </div>
             <div id ="modal">
                 <addtask @recordadded="refreshRecord"></addtask>
-                <edittask :rec="editRec"></edittask>
+                <edittask :rec="editRec" @recordUpdated="refreshRecord"></edittask>
+                <viewtask :viewRec="editRec"></viewtask>
+        </div>
         </div>
     </div>
 </template>
@@ -30,6 +32,7 @@
 Vue.component('pagination', require('laravel-vue-pagination'));
 Vue.component('addtask', require('./addmodalcomponent.vue'));
 Vue.component('edittask', require('./editmodalcomponent.vue'));
+Vue.component('viewtask', require('./viewmodalcomponent.vue'));
 export default{
     data(){
         return{
@@ -61,7 +64,15 @@ export default{
                             .then ( response => this.editRec =response.data)
                             .catch ( error=> this.errors =error.response.data.errors)
                     },
-                    delRecord() {}
+                    delRecord(id) {
+                const reply = confirm("Are You sure, you want to delete this record ?");
+                if(reply){
+                    axios.post('http://127.0.0.1:8000/tasks/'+id,{id: id, _method: 'DELETE' })
+                 .then( response => this.tasks = response.data) 
+                  .catch( error => this.errors = error.response.data.errors)
+                }   
+                                     
+            },
 	    },
     
     created(){

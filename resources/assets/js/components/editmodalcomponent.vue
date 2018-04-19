@@ -34,7 +34,7 @@ export default
         methods:
          {      updateRecord() 
                     {     console.log('this.record=', this.record);
-                           axios.post("http://127.0.0.1:8000/tasks"+this.rec.id, {
+                           axios.post("http://127.0.0.1:8000/tasks/"+this.rec.id, {
                             'name': this.rec.name,
                              '_method':'PUT'
                         })

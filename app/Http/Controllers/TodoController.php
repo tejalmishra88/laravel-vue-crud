@@ -14,9 +14,7 @@ class TodoController extends Controller
      */
     public function index()
     {
-        $task = todo::orderBy('id', 'desc')->paginate(3);
-        return request()->json(200,$task);
-     //   return todo::all();
+        return $this->_getRecord();
     }
 
     /**
@@ -39,10 +37,7 @@ class TodoController extends Controller
     { 
         $todo = todo::create($t1->all());
         if($todo){
-            $tasks = todo::orderBy('id','desc')->paginate(3);
-         
-            return request()->json(200,$tasks);
-          // return "gggggggg";
+            return $this->_getRecord();
         }
         
     }
@@ -79,7 +74,13 @@ class TodoController extends Controller
      */
     public function update(todorequest $request, todo $task)
     {
-        //
+        $task->name = $request->name;
+        $task->save();
+      //  return"hehe";
+       if( $task->save()){
+        $tasks = Todo::orderBy('id','desc')->paginate(3);
+        return request()->json(200,$tasks);
+        }
     }
 
     /**
@@ -90,6 +91,13 @@ class TodoController extends Controller
      */
     public function destroy(todo $task)
     {
-        //
+        if($task->delete())  return $this->_getRecord();
+       // else return response()->json(425,['delete'=>"error deleting record"]);
+    }
+    private function _getRecord(){
+        $tasks = todo::orderBy('id','desc')->paginate(3);
+         
+            return request()->json(200,$tasks);
+
     }
 }
