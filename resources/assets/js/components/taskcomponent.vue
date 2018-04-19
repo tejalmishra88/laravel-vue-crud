@@ -8,7 +8,7 @@
                     <div class="panel-body">
                         <ul class="list-group">
                             <li class="list-group-item"  v-for= "t in tasks.data">{{ t.id }} - {{ t.name }} <span
-                             class="pull-right"><a data-toggle="modal" href="#editmodal" class="btn btn-primary btn-xs" @click="">Edit</a> |
+                             class="pull-right"><a data-toggle="modal" href="#editmodal" class="btn btn-primary btn-xs" @click="getRecord(t.id)">Edit</a> |
                               <button @click="delRecord(t.id)" class="btn btn-danger btn-xs">Delete</button> | 
                               <a class="btn btn-info btn-xs" data-toggle="modal" href="#viewmodal">preview</a></span></li>
                         </ul>
@@ -57,10 +57,11 @@ export default{
                         this.tasks= record.data
                     },
                     getRecord(id){
-                            axios.get('http://127.0.0.1:8000/tasks/'+id)
+                            axios.get('http://127.0.0.1:8000/tasks/'+id+'/edit')
                             .then ( response => this.editRec =response.data)
                             .catch ( error=> this.errors =error.response.data.errors)
-                    }
+                    },
+                    delRecord() {}
 	    },
     
     created(){
