@@ -16,3 +16,4 @@ Route::get('/', function () {
 });
 //Route::resource('tasks', 'TodoController');
 Route::resource('tasks', 'TodoController');
+Route::get('tasks/search/{term?}');
