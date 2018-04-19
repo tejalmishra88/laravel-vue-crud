@@ -10,7 +10,7 @@
                     <div class="modal-body">
                         <p class="alert alert-success" v-if="success.length > 0">{{ success}}</p>
                         <label for="name">add new task</label>
-                        <textarea name="name" id="name" class="form-control" v-model="record"></textarea>
+                        <textarea name="name" id="name" class="form-control" v-model="rec.name"></textarea>
                         <ul v-if="errors.name" class="list-unstyled">
                             <li v-for="err of errors.name" class="alert alert-danger">{{ err }}</li>
                         </ul>
@@ -18,7 +18,7 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" @click="clearmodal" data-dismiss="modal">
                                     Close</button>
-                        <button type="button" class="btn btn-primary" @click="addRecord">Save Changes</button>
+                        <button type="button" class="btn btn-primary" @click="updateRecord">Update Changes</button>
                     </div>
                 </div>
             </div>
@@ -29,25 +29,25 @@ export default
   {
       props:['rec'],
        data() 
-        {  return  {    success: '',  errors: [],  record: '',    }
+        {  return  {    success: '',  errors: [],    }
          },
         methods:
-         {      addRecord() 
+         {      updateRecord() 
                     {     console.log('this.record=', this.record);
-                           axios.post("http://127.0.0.1:8000/tasks", {
-                            'name': this.record,
+                           axios.post("http://127.0.0.1:8000/tasks"+this.rec.id, {
+                            'name': this.rec.name,
+                             '_method':'PUT'
                         })
                         .then(data => {
-                            this.$emit('recordadded', data);
-                            this.success = "Task Added Successfully...";
-                            this.record = '';
+                            this.$emit('recordUpdated', data);
+                            this.success = "Task Updated Successfully...";
+                           
                         })
                         .catch(error => this.errors = error.response.data.errors)
             },
             clearmodal() {
                     this.error = [];
                     console.log('this.error=', this.error);
-                    this.record = '';
                     this.success = '';
                 }
 

@@ -14,8 +14,8 @@ class TodoController extends Controller
      */
     public function index()
     {
-        $tasks = todo::orderBy('id', 'desc')->paginate(3);
-        return request()->json(200,$tasks);
+        $task = todo::orderBy('id', 'desc')->paginate(3);
+        return request()->json(200,$task);
      //   return todo::all();
     }
 
@@ -35,10 +35,10 @@ class TodoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(todorequest $t1)
+    public function store(todorequest $request)
     { 
-        $t1 = todo::create($t1->all());
-        if($t1){
+        $todo = todo::create($t1->all());
+        if($todo){
             $tasks = todo::orderBy('id','desc')->paginate(3);
          
             return request()->json(200,$tasks);
@@ -53,7 +53,7 @@ class TodoController extends Controller
      * @param  \App\todo  $todo
      * @return \Illuminate\Http\Response
      */
-    public function show(todo $todo)
+    public function show(todo $task)
     {
         //
     }
@@ -64,9 +64,9 @@ class TodoController extends Controller
      * @param  \App\todo  $todo
      * @return \Illuminate\Http\Response
      */
-    public function edit(todo $todo)
+    public function edit(todo $task)
     {
-        return request()->json(200,$tasks);
+        return request()->json(200,$task);
         //
     }
 
@@ -77,7 +77,7 @@ class TodoController extends Controller
      * @param  \App\todo  $todo
      * @return \Illuminate\Http\Response
      */
-    public function update(todorequest $request, todo $todo)
+    public function update(todorequest $request, todo $task)
     {
         //
     }
@@ -88,7 +88,7 @@ class TodoController extends Controller
      * @param  \App\todo  $todo
      * @return \Illuminate\Http\Response
      */
-    public function destroy(todo $todo)
+    public function destroy(todo $task)
     {
         //
     }

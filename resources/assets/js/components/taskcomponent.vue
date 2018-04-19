@@ -8,7 +8,7 @@
                     <div class="panel-body">
                         <ul class="list-group">
                             <li class="list-group-item"  v-for= "t in tasks.data">{{ t.id }} - {{ t.name }} <span
-                             class="pull-right"><a data-toggle="modal" href="#editmodal" class="btn btn-primary btn-xs">Add</a> |
+                             class="pull-right"><a data-toggle="modal" href="#editmodal" class="btn btn-primary btn-xs" @click="">Edit</a> |
                               <button @click="delRecord(t.id)" class="btn btn-danger btn-xs">Delete</button> | 
                               <a class="btn btn-info btn-xs" data-toggle="modal" href="#viewmodal">preview</a></span></li>
                         </ul>
@@ -22,16 +22,21 @@
             </div>
             <div id ="modal">
                 <addtask @recordadded="refreshRecord"></addtask>
+                <edittask :rec="editRec"></edittask>
         </div>
     </div>
 </template>
 <script type="text/javascript">
 Vue.component('pagination', require('laravel-vue-pagination'));
 Vue.component('addtask', require('./addmodalcomponent.vue'));
+Vue.component('edittask', require('./editmodalcomponent.vue'));
 export default{
     data(){
         return{
                 tasks:{},
+                records:{},
+                editRec:{},
+                errors:[],
         }
     },
     methods:{
@@ -50,6 +55,11 @@ export default{
                     },
                     refreshRecord(record){
                         this.tasks= record.data
+                    },
+                    getRecord(id){
+                            axios.get('http://127.0.0.1:8000/tasks/'+id)
+                            .then ( response => this.editRec =response.data)
+                            .catch ( error=> this.errors =error.response.data.errors)
                     }
 	    },
     
