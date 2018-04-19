@@ -46594,7 +46594,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -46605,6 +46605,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
 //
 //
 //
@@ -46646,7 +46647,8 @@ Vue.component('viewtask', __webpack_require__(80));
             tasks: {},
             records: {},
             editRec: {},
-            errors: []
+            errors: [],
+            search: ''
         };
     },
 
@@ -46689,14 +46691,27 @@ Vue.component('viewtask', __webpack_require__(80));
                     return _this3.errors = error.response.data.errors;
                 });
             }
+        },
+        searchRecord: function searchRecord() {
+            var _this4 = this;
+
+            if (this.search.length >= 3) {
+                axios.get('http://127.0.0.1:8000/tasks/search/' + this.search).then(function (response) {
+                    return _this4.tasks = response.data;
+                }).catch(function (err) {
+                    return console.log(err);
+                });
+            } else {
+                this.getResults();
+            }
         }
     },
 
     created: function created() {
-        var _this4 = this;
+        var _this5 = this;
 
         axios.get('http://127.0.0.1:8000/tasks').then(function (response) {
-            _this4.tasks = response.data;
+            _this5.tasks = response.data;
             console.log('response-created', response);
         }).catch(function (error) {
             return console.log(error);
@@ -47084,6 +47099,29 @@ var render = function() {
             "div",
             { staticClass: "panel-body" },
             [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.search,
+                    expression: "search"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: { type: "search", placeholder: "" },
+                domProps: { value: _vm.search },
+                on: {
+                  keyup: _vm.searchRecord,
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.search = $event.target.value
+                  }
+                }
+              }),
+              _vm._v(" "),
               _c(
                 "ul",
                 { staticClass: "list-group" },

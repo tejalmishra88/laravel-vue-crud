@@ -6,6 +6,7 @@
                     <div class="panel-heading"><h4>all todo tasks <span class="pull-right">
                         <a class="btn btn-success btn-xs" data-toggle="modal" href="#addmodal">+</a></span></h4></div>
                     <div class="panel-body">
+                        <input type="search" v-model="search" class="form-control" @keyup="searchRecord" placeholder="">
                         <ul class="list-group">
                             <li class="list-group-item"  v-for= "t in tasks.data">{{ t.id }} - {{ t.name }} <span
                              class="pull-right"><a data-toggle="modal" href="#editmodal" class="btn btn-primary btn-xs" @click="getRecord(t.id)">Edit</a> |
@@ -40,6 +41,7 @@ export default{
                 records:{},
                 editRec:{},
                 errors:[],
+                search:'',
         }
     },
     methods:{
@@ -73,6 +75,13 @@ export default{
                 }   
                                      
             },
+            searchRecord(){
+                if(this.search.length >=3 ){
+                    axios.get('http://127.0.0.1:8000/tasks/search/'+this.search)
+                    .then (response => this.tasks =response.data)
+                    .catch(err => console.log(err))
+                }else{ this.getResults()}
+            }
 	    },
     
     created(){
