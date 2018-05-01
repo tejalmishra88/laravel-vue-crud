@@ -46280,15 +46280,28 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    mounted: function mounted() {
-        console.log(' example Component mounted.');
-    },
     data: function data() {
         return {
-            name: "manoj mishra"
+            name: {}
         };
+    },
+
+    methods: {},
+    created: function created() {
+        var _this = this;
+
+        axios.get('http://127.0.0.1:8000/aditinames').then(function (response) {
+            return _this.task = response.data;
+        }).catch(function (error) {
+            return console.log(error);
+        });
+        console.log(' example Component loaded....');
     }
 });
 
@@ -46307,12 +46320,19 @@ var render = function() {
           _vm._m(0),
           _vm._v(" "),
           _c("div", { staticClass: "panel-body" }, [
-            _vm._v(
-              "\n                    hello, " +
-                _vm._s(_vm.name) +
-                "\n                "
+            _c(
+              "ul",
+              { staticClass: "list-group" },
+              _vm._l(_vm.task, function(t) {
+                return _c("li", { staticClass: "list-group-item" }, [
+                  _vm._v(_vm._s(t.id) + "-" + _vm._s(t.name)),
+                  _vm._m(1, true)
+                ])
+              })
             )
-          ])
+          ]),
+          _vm._v(" "),
+          _vm._m(2)
         ])
       ])
     ])
@@ -46324,7 +46344,27 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "panel-heading" }, [
-      _c("h2", [_vm._v("panel heading")])
+      _c("h2", [_vm._v("all name list")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { attrs: { classs: "pull-right" } }, [
+      _c("button", [_vm._v("Add")]),
+      _vm._v(" | \n                       "),
+      _c("button", [_vm._v("Delete")]),
+      _vm._v(" | "),
+      _c("button", [_vm._v("Preview")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "panel-footer text-right" }, [
+      _c("small", [_vm._v("by company xyz")])
     ])
   }
 ]
