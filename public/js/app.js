@@ -46286,6 +46286,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
+Vue.component('pagination', __webpack_require__(57));
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {

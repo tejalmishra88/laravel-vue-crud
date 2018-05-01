@@ -19,7 +19,8 @@
     </div>
 </template>
 
-<script>
+<script type="text/javascript">
+Vue.component('pagination', require('laravel-vue-pagination'));
     export default {
         data(){
             return{
