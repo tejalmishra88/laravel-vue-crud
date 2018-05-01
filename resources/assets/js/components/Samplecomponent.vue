@@ -3,11 +3,16 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-danger">
-                    <div class="panel-heading"><h2>sample component heading</h2></div>
+                    <div class="panel-heading"><h2>all name list</h2></div>
 
                     <div class="panel-body">
-                        hello,{{ name }}
+                       <ul class="list-group">
+                           <li class="list-group-item"  v-for="a in aditi5">{{a.id}}-{{a.name}}> 
+                               <span classs="pull-right"><button>Add</button> | 
+                           <button>Delete</button> | <button>Preview</button></span></li>
+                       </ul>
                     </div>
+                     <div class="panel-footer text-right"><small>by company xyz</small></div>
                 </div>
             </div>
         </div>
@@ -15,23 +20,26 @@
 </template>
 
 <script>
-    export default 
-    {  created(){  },
-        mounted() {
-            console.log(' sample Component mounted. name=',this.name)
-        },
+    export default {
         data(){
             return{
-                name:"tejal mishra"
+                aditi5:{}
             }
-        }
+        },
+        methods:{
+
+        },
+        created() {
+            axios.get('http://127.0.0.1:8000/xyz')
+            .then((response) =>{ console.log('response===',response)
+                this.aditi5 = response.data})
+            .catch((error) =>console.log(error))
+            console.log(' example Component loaded....')
+        },
     }
 </script>
-
-
-
 <style type="text/css" scoped>
 h2{
-    color:green;
+    color:blue;
 }
 </style>

@@ -14,13 +14,14 @@ class AditiController extends Controller
     }
 
    
-    public function save111names(Request $request)
+    public function savenames(Request $request)
     { 
-        $todo = aditi::create($t1->all());
-        if($todo){
-            return $this->_getRecord();
+        $todo = aditi::create($request->all());
+        if($todo)
+        {   
+            $tasks = aditi::orderBy('id','desc');
+            return request()->json(200,$tasks);
         }
-        
     }
 
 }

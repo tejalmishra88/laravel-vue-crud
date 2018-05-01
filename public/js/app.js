@@ -46284,11 +46284,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
-            name: {}
+            aditi: {}
         };
     },
 
@@ -46296,8 +46297,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     created: function created() {
         var _this = this;
 
-        axios.get('http://127.0.0.1:8000/aditinames').then(function (response) {
-            return _this.task = response.data;
+        axios.get('http://127.0.0.1:8000/aditinames/getnames').then(function (response) {
+            console.log('response===', response);
+            _this.aditi = response.data;
         }).catch(function (error) {
             return console.log(error);
         });
@@ -46323,9 +46325,9 @@ var render = function() {
             _c(
               "ul",
               { staticClass: "list-group" },
-              _vm._l(_vm.task, function(t) {
+              _vm._l(_vm.aditi, function(a) {
                 return _c("li", { staticClass: "list-group-item" }, [
-                  _vm._v(_vm._s(t.id) + "-" + _vm._s(t.name)),
+                  _vm._v(_vm._s(a.id) + " - " + _vm._s(a.name) + "> "),
                   _vm._m(1, true)
                 ])
               })
@@ -46344,19 +46346,26 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "panel-heading" }, [
-      _c("h2", [_vm._v("all name list")])
+      _c("h2", [
+        _vm._v("all name list "),
+        _c("span", { staticClass: "pull-right" }, [
+          _c("button", { staticClass: "btn btn-success btn-xs" }, [_vm._v("+")])
+        ])
+      ])
     ])
   },
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("span", { attrs: { classs: "pull-right" } }, [
-      _c("button", [_vm._v("Add")]),
+    return _c("span", { staticClass: "pull-right" }, [
+      _c("button", { staticClass: "btn btn-primary btn-xs" }, [_vm._v("Add")]),
       _vm._v(" | \n                       "),
-      _c("button", [_vm._v("Delete")]),
+      _c("button", { staticClass: "btn btn-danger btn-xs" }, [
+        _vm._v("Delete")
+      ]),
       _vm._v(" | "),
-      _c("button", [_vm._v("Preview")])
+      _c("button", { staticClass: "btn btn-info btn-xs" }, [_vm._v("Preview")])
     ])
   },
   function() {
@@ -46463,7 +46472,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\nh2[data-v-21be4a28]{\r\n    color:green;\n}\r\n", ""]);
+exports.push([module.i, "\nh2[data-v-21be4a28]{\r\n    color:blue;\n}\r\n", ""]);
 
 // exports
 
@@ -46490,16 +46499,30 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    created: function created() {},
-    mounted: function mounted() {
-        console.log(' sample Component mounted. name=', this.name);
-    },
     data: function data() {
         return {
-            name: "tejal mishra"
+            aditi5: {}
         };
+    },
+
+    methods: {},
+    created: function created() {
+        var _this = this;
+
+        axios.get('http://127.0.0.1:8000/xyz').then(function (response) {
+            console.log('response===', response);
+            _this.aditi5 = response.data;
+        }).catch(function (error) {
+            return console.log(error);
+        });
+        console.log(' example Component loaded....');
     }
 });
 
@@ -46518,12 +46541,24 @@ var render = function() {
           _vm._m(0),
           _vm._v(" "),
           _c("div", { staticClass: "panel-body" }, [
-            _vm._v(
-              "\n                    hello," +
-                _vm._s(_vm.name) +
-                "\n                "
+            _c(
+              "ul",
+              { staticClass: "list-group" },
+              _vm._l(_vm.aditi5, function(a) {
+                return _c("li", { staticClass: "list-group-item" }, [
+                  _vm._v(
+                    _vm._s(a.id) +
+                      "-" +
+                      _vm._s(a.name) +
+                      "> \n                           "
+                  ),
+                  _vm._m(1, true)
+                ])
+              })
             )
-          ])
+          ]),
+          _vm._v(" "),
+          _vm._m(2)
         ])
       ])
     ])
@@ -46535,7 +46570,27 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "panel-heading" }, [
-      _c("h2", [_vm._v("sample component heading")])
+      _c("h2", [_vm._v("all name list")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { attrs: { classs: "pull-right" } }, [
+      _c("button", [_vm._v("Add")]),
+      _vm._v(" | \n                       "),
+      _c("button", [_vm._v("Delete")]),
+      _vm._v(" | "),
+      _c("button", [_vm._v("Preview")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "panel-footer text-right" }, [
+      _c("small", [_vm._v("by company xyz")])
     ])
   }
 ]

@@ -20,5 +20,6 @@ Route::get('tasks/search/{term?}', 'TodoController@index');
 
 //Route::resource('aditinames', 'AditiController');
 Route::get('aditinames/getnames', 'AditiController@getnames');
-Route::post('aditinames/savenames', 'AditiController@save111names');
-Route::get('xyzxxx', 'SonuController@getnames');
+Route::post('savenames1', 'AditiController@savenames');
+Route::get('xyz', 'SonuController@getnames');
+
