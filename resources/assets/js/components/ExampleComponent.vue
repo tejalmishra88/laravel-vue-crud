@@ -3,7 +3,8 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-primary">
-                    <div class="panel-heading"><h2>all name list <span class= "pull-right"><button class="btn btn-success btn-xs">+</button></span></h2></div>
+                    <div class="panel-heading"><h2>all name list <span class= "pull-right">
+                        <a class="btn btn-success btn-xs" data-toggle="modal" href="#addmodal1">+</a></span></h2></div>
 
                     <div class="panel-body">
                        <ul class="list-group">
@@ -11,6 +12,7 @@
                                "pull-right"><button class="btn btn-primary btn-xs">Add</button> | 
                            <button class="btn btn-danger btn-xs">Delete</button> | <button class="btn btn-info btn-xs">Preview</button></span></li>
                        </ul>
+                       <pagination :data="aditi" v-on:pagination-change-page="getResults"></pagination>
                     </div>
                      <div class="panel-footer text-right"><small>by company xyz</small></div>
                 </div>
@@ -20,7 +22,8 @@
 </template>
 
 <script type="text/javascript">
-Vue.component('pagination', require('laravel-vue-pagination'));
+//Vue.component('pagination', require('laravel-vue-pagination'));
+Vue.component('addtask', require('./addmodal1component.vue'));
     export default {
         data(){
             return{
@@ -28,12 +31,11 @@ Vue.component('pagination', require('laravel-vue-pagination'));
             }
         },
         methods:{
-
+            
         },
         created() {
             axios.get('http://127.0.0.1:8000/aditinames/getnames')
-            .then((response) =>{ console.log('response===',response)
-                this.aditi = response.data})
+            .then((response) => this.aditi = response.data)
             .catch((error) =>console.log(error))
             console.log(' example Component loaded....')
         },
