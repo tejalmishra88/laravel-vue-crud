@@ -12,18 +12,20 @@
                                "pull-right"><button class="btn btn-primary btn-xs">Add</button> | 
                            <button class="btn btn-danger btn-xs">Delete</button> | <button class="btn btn-info btn-xs">Preview</button></span></li>
                        </ul>
-                       <pagination :data="aditi" v-on:pagination-change-page="getResults"></pagination>
                     </div>
                      <div class="panel-footer text-right"><small>by company xyz</small></div>
                 </div>
             </div>
+        </div>
+        <div id="modal">
+            <addtask1></addtask1>
         </div>
     </div>
 </template>
 
 <script type="text/javascript">
 //Vue.component('pagination', require('laravel-vue-pagination'));
-Vue.component('addtask', require('./addmodal1component.vue'));
+Vue.component('addtask1', require('./addmodal1component.vue'));
     export default {
         data(){
             return{

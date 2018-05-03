@@ -46287,9 +46287,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 //Vue.component('pagination', require('laravel-vue-pagination'));
-Vue.component('addtask', __webpack_require__(85));
+Vue.component('addtask1', __webpack_require__(85));
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
@@ -46324,33 +46326,25 @@ var render = function() {
         _c("div", { staticClass: "panel panel-primary" }, [
           _vm._m(0),
           _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "panel-body" },
-            [
-              _c(
-                "ul",
-                { staticClass: "list-group" },
-                _vm._l(_vm.aditi, function(a) {
-                  return _c("li", { staticClass: "list-group-item" }, [
-                    _vm._v(_vm._s(a.id) + " - " + _vm._s(a.name) + "> "),
-                    _vm._m(1, true)
-                  ])
-                })
-              ),
-              _vm._v(" "),
-              _c("pagination", {
-                attrs: { data: _vm.aditi },
-                on: { "pagination-change-page": _vm.getResults }
+          _c("div", { staticClass: "panel-body" }, [
+            _c(
+              "ul",
+              { staticClass: "list-group" },
+              _vm._l(_vm.aditi, function(a) {
+                return _c("li", { staticClass: "list-group-item" }, [
+                  _vm._v(_vm._s(a.id) + " - " + _vm._s(a.name) + "> "),
+                  _vm._m(1, true)
+                ])
               })
-            ],
-            1
-          ),
+            )
+          ]),
           _vm._v(" "),
           _vm._m(2)
         ])
       ])
-    ])
+    ]),
+    _vm._v(" "),
+    _c("div", { attrs: { id: "modal" } }, [_c("addtask1")], 1)
   ])
 }
 var staticRenderFns = [
