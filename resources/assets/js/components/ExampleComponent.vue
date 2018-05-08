@@ -9,8 +9,8 @@
                     <div class="panel-body">
                        <ul class="list-group">
                            <li class="list-group-item"  v-for="a in aditi">{{a.id}} - {{a.name}}> <span class=
-                               "pull-right"><a data-toggle="modal" href="#editmodal1"class="btn btn-primary btn-xs">Add</a> | 
-                           <a class="btn btn-danger btn-xs">Delete</a> | <a class="btn btn-info btn-xs">Preview</a></span></li>
+                               "pull-right"><a data-toggle="modal" href="#editmodal1" class="btn btn-primary btn-xs">Add</a> | 
+                           <button @click="delRecord(t.id)" class="btn btn-danger btn-xs">Delete</button> | <a data-toggle="modal" href="#viewmodal1" class="btn btn-info btn-xs">Preview</a></span></li>
                        </ul>
                     </div>
                      <div class="panel-footer text-right"><small>by company xyz</small></div>

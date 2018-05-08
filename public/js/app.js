@@ -46594,13 +46594,44 @@ var render = function() {
               _vm._l(_vm.aditi, function(a) {
                 return _c("li", { staticClass: "list-group-item" }, [
                   _vm._v(_vm._s(a.id) + " - " + _vm._s(a.name) + "> "),
-                  _vm._m(1, true)
+                  _c("span", { staticClass: "pull-right" }, [
+                    _c(
+                      "a",
+                      {
+                        staticClass: "btn btn-primary btn-xs",
+                        attrs: { "data-toggle": "modal", href: "#editmodal1" }
+                      },
+                      [_vm._v("Add")]
+                    ),
+                    _vm._v(" | \n                       "),
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-danger btn-xs",
+                        on: {
+                          click: function($event) {
+                            _vm.delRecord(_vm.t.id)
+                          }
+                        }
+                      },
+                      [_vm._v("Delete")]
+                    ),
+                    _vm._v(" | "),
+                    _c(
+                      "a",
+                      {
+                        staticClass: "btn btn-info btn-xs",
+                        attrs: { "data-toggle": "modal", href: "#viewmodal1" }
+                      },
+                      [_vm._v("Preview")]
+                    )
+                  ])
                 ])
               })
             )
           ]),
           _vm._v(" "),
-          _vm._m(2)
+          _vm._m(1)
         ])
       ])
     ]),
@@ -46627,25 +46658,6 @@ var staticRenderFns = [
           )
         ])
       ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("span", { staticClass: "pull-right" }, [
-      _c(
-        "a",
-        {
-          staticClass: "btn btn-primary btn-xs",
-          attrs: { "data-toggle": "modal", href: "#editmodal1" }
-        },
-        [_vm._v("Add")]
-      ),
-      _vm._v(" | \n                       "),
-      _c("a", { staticClass: "btn btn-danger btn-xs" }, [_vm._v("Delete")]),
-      _vm._v(" | "),
-      _c("a", { staticClass: "btn btn-info btn-xs" }, [_vm._v("Preview")])
     ])
   },
   function() {
