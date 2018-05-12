@@ -21,6 +21,7 @@ class AditiController extends Controller
         {   
             $tasks = aditi::orderBy('id','desc');
             return request()->json(200,$tasks);
+          // return "tejal";
         }
     }
 

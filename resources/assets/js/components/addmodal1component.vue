@@ -32,13 +32,14 @@ export default
         methods:
          {      addRecord() 
                     {     console.log('this.record=', this.record);
-                           axios.post("http://127.0.0.1:8000/tasks", {
+                           axios.post("http://127.0.0.1:8000/savenames1", {
                             'name': this.record,
                         })
                         .then(data => {
                             this.$emit('recordadded', data);
                             this.success = "Task Added Successfully...";
                             this.record = '';
+                            console.log('res=', this.response.data);
                         })
                         .catch(error => this.errors = error.response.data.errors)
             },

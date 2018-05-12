@@ -17,9 +17,10 @@ Route::get('/', function () {
 //Route::resource('tasks', 'TodoController');
 Route::resource('tasks', 'TodoController');
 Route::get('tasks/search/{term?}', 'TodoController@index');
+Route::get('xyz', 'SonuController@getnames');
 
 //Route::resource('aditinames', 'AditiController');
 Route::get('aditinames/getnames', 'AditiController@getnames');
 Route::post('savenames1', 'AditiController@savenames');
-Route::get('xyz', 'SonuController@getnames');
+
 

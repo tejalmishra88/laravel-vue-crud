@@ -46398,7 +46398,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -46446,12 +46446,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var _this = this;
 
       console.log('this.record=', this.record);
-      axios.post("http://127.0.0.1:8000/tasks", {
+      axios.post("http://127.0.0.1:8000/savenames1", {
         'name': this.record
       }).then(function (data) {
         _this.$emit('recordadded', data);
         _this.success = "Task Added Successfully...";
         _this.record = '';
+        console.log('res=', _this.response.data);
       }).catch(function (error) {
         return _this.errors = error.response.data.errors;
       });
