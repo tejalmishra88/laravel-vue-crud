@@ -46297,7 +46297,11 @@ Vue.component('viewtask', __webpack_require__(94));
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
-            aditi: {}
+            aditi: {},
+            records: {},
+            editRec: {},
+            errors: [],
+            search: ''
         };
     },
 
@@ -46604,7 +46608,7 @@ var render = function() {
                         staticClass: "btn btn-primary btn-xs",
                         attrs: { "data-toggle": "modal", href: "#editmodal1" }
                       },
-                      [_vm._v("Add")]
+                      [_vm._v("edit")]
                     ),
                     _vm._v(" | \n                       "),
                     _c(
