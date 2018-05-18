@@ -1,5 +1,5 @@
 <template>
-    <div class="modal fade" id="viewmodal">
+    <div class="modal fade" id="viewmodal1">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -21,8 +21,7 @@
 </template>
 <script type="text/javascript">
 export default
-  {
-      props:['viewRec'],
+  {  props:['viewRec'],
         }
 </script>
 <style type="text/css"scoped>
