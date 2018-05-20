@@ -32,7 +32,7 @@ export default
         methods:
          {      addRecord() 
                     {     console.log('this.record=', this.record);
-                           axios.post("http://127.0.0.1:8000/savenames1", {
+                           axios.post("http://127.0.0.1:8000/savenames", {
                             'name': this.record,
                         })
                         .then(response => {

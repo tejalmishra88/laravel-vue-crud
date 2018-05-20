@@ -23,4 +23,7 @@ Route::get('xyz', 'SonuController@getnames');
 Route::get('aditinames/getnames', 'AditiController@getnames');
 Route::post('savenames1', 'AditiController@savenames');
 
+Route::get('aditimishranames/getnames', 'AditimishraController@getnames');
+Route::post('savenames', 'AditimishraController@savenames');
+
 

@@ -47757,7 +47757,7 @@ Vue.component('viewtask', __webpack_require__(144));
     created: function created() {
         var _this = this;
 
-        axios.get('http://127.0.0.1:8000/aditinames/getnames').then(function (response) {
+        axios.get('http://127.0.0.1:8000/aditimishranames/getnames').then(function (response) {
             _this.aditi = response.data;
             console.log('result=', _this.aditi);
         }).catch(function (error) {
@@ -47901,7 +47901,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var _this = this;
 
       console.log('this.record=', this.record);
-      axios.post("http://127.0.0.1:8000/savenames1", {
+      axios.post("http://127.0.0.1:8000/savenames", {
         'name': this.record
       }).then(function (response) {
         //console.log( 'res', response.data)

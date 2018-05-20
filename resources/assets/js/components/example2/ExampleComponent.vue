@@ -46,7 +46,7 @@ Vue.component('viewtask', require('./viewmodal1component.vue'));
             
         },
         created() {
-            axios.get('http://127.0.0.1:8000/aditinames/getnames')
+            axios.get('http://127.0.0.1:8000/aditimishranames/getnames')
             .then((response) =>{ 
                 this.aditi = response.data
                 console.log('result=', this.aditi)
