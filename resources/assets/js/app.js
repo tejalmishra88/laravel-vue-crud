@@ -19,12 +19,17 @@ Vue.use(VueRouter)
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 const example1 = require('./components/example1/ExampleComponent.vue');
+const example2 = require('./components/example2/ExampleComponent.vue');
 const sample = require('./components/Samplecomponent.vue');
 const tasks = require('./components/taskcomponent.vue');
 const routes = [
     {
         path:'/example1',
         component: example1
+    },
+    {
+        path:'/example2',
+        component: example2
     },
     {
         path:'/',
