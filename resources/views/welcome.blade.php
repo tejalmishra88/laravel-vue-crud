@@ -39,7 +39,7 @@
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 
                 <ul class="nav navbar-nav navbar-right">
-                    <li><router-link to ="/example">Example</router-link></li>
+                    <li><router-link to ="/example1">Example1</router-link></li>
                     <li><router-link to ="/sample">sample</router-link></li>
                 </ul>
             </div><!-- /.navbar-collapse -->

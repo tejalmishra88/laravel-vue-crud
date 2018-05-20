@@ -18,12 +18,12 @@ Vue.use(VueRouter)
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
-const example1 = require('./components/ExampleComponent.vue');
+const example1 = require('./components/example1/ExampleComponent.vue');
 const sample = require('./components/Samplecomponent.vue');
 const tasks = require('./components/taskcomponent.vue');
 const routes = [
     {
-        path:'/example',
+        path:'/example1',
         component: example1
     },
     {

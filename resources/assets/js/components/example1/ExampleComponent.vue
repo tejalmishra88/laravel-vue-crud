@@ -8,7 +8,7 @@
 
                     <div class="panel-body">
                        <ul class="list-group">
-                           <li class="list-group-item"  v-for="a in aditi">{{a.id}} - {{a.name}}> <span class=
+                           <li class="list-group-item"  v-for="a in aditi">{{a.id}} - {{a.name}} <span class=
                                "pull-right"><a data-toggle="modal" href="#editmodal1" class="btn btn-primary btn-xs">edit</a> | 
                            <button @click="delRecord(t.id)" class="btn btn-danger btn-xs">Delete</button> | <a data-toggle="modal" href="#viewmodal1" class="btn btn-info btn-xs">Preview</a></span></li>
                        </ul>
@@ -26,8 +26,8 @@
 <script type="text/javascript">
 //Vue.component('pagination', require('laravel-vue-pagination'));
 Vue.component('addtask1', require('./addmodal1component.vue'));
-Vue.component('edittask', require('./editmodal1component.vue'));
-Vue.component('viewtask', require('./viewmodal1component.vue'));
+//Vue.component('edittask', require('./editmodal1component.vue'));
+//Vue.component('viewtask', require('./viewmodal1component.vue'));
     export default {
         data(){
             return{
