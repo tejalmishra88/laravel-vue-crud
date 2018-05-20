@@ -46307,14 +46307,17 @@ Vue.component('viewtask', __webpack_require__(124));
 
     methods: {
         refreshRecordaditi: function refreshRecordaditi(record) {
-            this.tasks = record.data;
+            console.log('rec=', record);
+            this.aditi = record;
+            console.log('answer=', this.aditi);
         }
     },
     created: function created() {
         var _this = this;
 
         axios.get('http://127.0.0.1:8000/aditinames/getnames').then(function (response) {
-            return _this.aditi = response.data;
+            _this.aditi = response.data;
+            console.log('result=', _this.aditi);
         }).catch(function (error) {
             return console.log(error);
         });
@@ -46408,7 +46411,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -46459,11 +46462,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       axios.post("http://127.0.0.1:8000/savenames1", {
         'name': this.record
       }).then(function (response) {
-        console.log('res', response.data);
-        _this.$emit('recordadded', data);
+        //console.log( 'res', response.data)
+        _this.$emit('recordadded', response.data);
         _this.success = "Task Added Successfully...";
         _this.record = '';
-        console.log('res=', _this.response.data);
+        console.log('res=', response.data);
       }).catch(function (error) {
         return _this.errors = error.response.data.errors;
       });

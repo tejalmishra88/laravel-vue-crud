@@ -39,14 +39,18 @@ Vue.component('viewtask', require('./viewmodal1component.vue'));
             }
         },
         methods:{
-             refreshRecordaditi(record){
-                        this.tasks= record.data
+             refreshRecordaditi(record){ console.log('rec=', record)
+                        this.aditi= record
+                        console.log('answer=',this.aditi)
                     },
             
         },
         created() {
             axios.get('http://127.0.0.1:8000/aditinames/getnames')
-            .then((response) => this.aditi = response.data)
+            .then((response) =>{ 
+                this.aditi = response.data
+                console.log('result=', this.aditi)
+                })
             .catch((error) =>console.log(error))
             console.log(' example Component loaded....')
         },
