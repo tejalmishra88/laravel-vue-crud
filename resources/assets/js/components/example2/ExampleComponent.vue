@@ -26,8 +26,8 @@
 <script type="text/javascript">
 //Vue.component('pagination', require('laravel-vue-pagination'));
 Vue.component('addtask1', require('./addmodal1component.vue'));
-Vue.component('edittask', require('./editmodal1component.vue'));
-Vue.component('viewtask', require('./viewmodal1component.vue'));
+//Vue.component('edittask', require('./editmodal1component.vue'));
+//Vue.component('viewtask', require('./viewmodal1component.vue'));
     export default {
         data(){
             return{
