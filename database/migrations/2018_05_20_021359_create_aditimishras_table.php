@@ -16,6 +16,8 @@ class CreateAditimishrasTable extends Migration
         Schema::create('aditimishras', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
+            $table->string('name');
+            $table->string('name1');
         });
     }
 
