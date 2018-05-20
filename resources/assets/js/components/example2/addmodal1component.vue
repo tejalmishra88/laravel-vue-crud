@@ -11,6 +11,7 @@
                         <p class="alert alert-success" v-if="success.length > 0">{{ success}}</p>
                         <label for="name">add new task</label>
                         <textarea name="name" id="name" class="form-control" v-model="record"></textarea>
+    
                         <ul v-if="errors.name" class="list-unstyled">
                             <li v-for="err of errors.name" class="alert alert-danger">{{ err }}</li>
                         </ul>
@@ -36,7 +37,7 @@ export default
                             'name': this.record,
                         })
                         .then(response => {
-                        //console.log( 'res', response.data)
+                        console.log( 'res', response.data)
                             this.$emit('recordadded', response.data);
                             this.success = "Task Added Successfully...";
                             this.record = '';
