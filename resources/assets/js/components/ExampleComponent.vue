@@ -18,7 +18,7 @@
             </div>
         </div>
         <div id="modal">
-            <addtask1></addtask1>
+            <addtask1 @recordadded="refreshRecord"></addtask1>
         </div>
     </div>
 </template>
@@ -39,6 +39,9 @@ Vue.component('viewtask', require('./viewmodal1component.vue'));
             }
         },
         methods:{
+             refreshRecord(record){
+                        this.tasks= record.data
+                    },
             
         },
         created() {
