@@ -24,5 +24,14 @@ class AditimishraController extends Controller
           // return "tejal";
         }
     }
+    public function aditidelc(Request $task)
+    {  $id=$task->input('id');
+       $task1= aditimishra::where('id','=',$id)->delete();
+       if($task1)  
+        {  $task2 = aditimishra::all();
+           return $task2;
+        }
+      
+    }
 
 }
