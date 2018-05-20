@@ -35,7 +35,7 @@ export default
                            axios.post("http://127.0.0.1:8000/savenames1", {
                             'name': this.record,
                         })
-                        .then(data => {
+                        .then(response => {
                             this.$emit('recordadded', data);
                             this.success = "Task Added Successfully...";
                             this.record = '';

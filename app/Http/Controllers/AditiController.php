@@ -19,7 +19,7 @@ class AditiController extends Controller
         $todo = aditi::create($request->all());
         if($todo)
         {   
-            $tasks = aditi::orderBy('id','desc');
+            $tasks = aditi::all();
             return request()->json(200,$tasks);
           // return "tejal";
         }
