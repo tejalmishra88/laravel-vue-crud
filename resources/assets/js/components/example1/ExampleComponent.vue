@@ -47,7 +47,7 @@ Vue.component('viewtask', require('./viewmodal1component.vue'));
                     {
                             const reply = confirm("Are You sure, you want to delete this record ?");
                             if(reply){
-                                        axios.post("http://127.0.0.1:8000/aditidelc", { 'id': id})
+                                        axios.post("http://127.0.0.1:8000/aditidelete", { 'id': id})
                                         //    axios.post('http://127.0.0.1:8000/aditidel/'+id,{id: id, _method: 'DELETE' })
                                             .then( response => this.aditi = response.data) 
                                             .catch( error => this.errors = error.response.data.errors)
