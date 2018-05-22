@@ -19,7 +19,6 @@
         </div>
         <div id="modal">
             <addtask1 @recordadded="refreshRecordaditimishra"></addtask1>
-         
              <viewtask1 :viewRec="editRec"></viewtask1>
         </div>
     </div>

@@ -46320,7 +46320,7 @@ Vue.component('viewtask', __webpack_require__(57));
 
             var reply = confirm("Are You sure, you want to delete this record ?");
             if (reply) {
-                axios.post("http://127.0.0.1:8000/aditidel", { 'id': id })
+                axios.post("http://127.0.0.1:8000/aditidelete", { 'id': id })
                 //    axios.post('http://127.0.0.1:8000/aditidel/'+id,{id: id, _method: 'DELETE' })
                 .then(function (response) {
                     return _this.aditi = response.data;
@@ -47091,7 +47091,7 @@ var render = function() {
                         staticClass: "btn btn-danger btn-xs",
                         on: {
                           click: function($event) {
-                            _vm.delRecord(_vm.t.id)
+                            _vm.delRecord(a.id)
                           }
                         }
                       },
@@ -47261,7 +47261,6 @@ exports.push([module.i, "\nh2[data-v-83093d40]{\r\n    color:blue;\n}\r\n", ""])
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
 //
 //
 //

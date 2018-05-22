@@ -10,7 +10,7 @@
                        <ul class="list-group">
                            <li class="list-group-item"  v-for="a in aditi">{{a.id}} - {{a.name}} <span class=
                                "pull-right"><a data-toggle="modal" href="#editmodal1" class="btn btn-primary btn-xs">edit</a> | 
-                           <button @click="delRecord(t.id)" class="btn btn-danger btn-xs">Delete</button> | <a data-toggle="modal" href="#viewmodal1" class="btn btn-info btn-xs">Preview</a></span></li>
+                           <button @click="delRecord(a.id)" class="btn btn-danger btn-xs">Delete</button> | <a data-toggle="modal" href="#viewmodal1" class="btn btn-info btn-xs">Preview</a></span></li>
                        </ul>
                     </div>
                      <div class="panel-footer text-right"><small>by company xyz</small></div>
@@ -47,7 +47,7 @@ Vue.component('viewtask', require('./viewmodal1component.vue'));
                     {
                             const reply = confirm("Are You sure, you want to delete this record ?");
                             if(reply){
-                                        axios.post("http://127.0.0.1:8000/aditidel", { 'id': id})
+                                        axios.post("http://127.0.0.1:8000/aditidelete", { 'id': id})
                                         //    axios.post('http://127.0.0.1:8000/aditidel/'+id,{id: id, _method: 'DELETE' })
                                             .then( response => this.aditi = response.data) 
                                             .catch( error => this.errors = error.response.data.errors)
