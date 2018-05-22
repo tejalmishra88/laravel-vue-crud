@@ -43,9 +43,19 @@ Vue.component('viewtask', require('./viewmodal1component.vue'));
                         this.aditi= record
                         console.log('answer=',this.aditi)
                     },
-            
+             delRecord(id) 
+                    {
+                            const reply = confirm("Are You sure, you want to delete this record ?");
+                            if(reply){
+                                        axios.post("http://127.0.0.1:8000/aditidel", { 'id': id})
+                                        //    axios.post('http://127.0.0.1:8000/aditidel/'+id,{id: id, _method: 'DELETE' })
+                                            .then( response => this.aditi = response.data) 
+                                            .catch( error => this.errors = error.response.data.errors)
+                                     }   
+                    }
         },
-        created() {
+        created() 
+        {
             axios.get('http://127.0.0.1:8000/aditinames/getnames')
             .then((response) =>{ 
                 this.aditi = response.data

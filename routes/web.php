@@ -27,5 +27,6 @@ Route::get('aditimishranames/getnames', 'AditimishraController@getnames');
 Route::post('savenames', 'AditimishraController@savenames');
 
 Route::post('aditidel', 'AditimishraController@aditidelc');
+Route::post('aditidelete', 'AditiController@aditidelc');
 
 

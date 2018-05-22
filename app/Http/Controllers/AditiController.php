@@ -24,5 +24,14 @@ class AditiController extends Controller
           // return "tejal";
         }
     }
+    public function aditidelete(Request $task)
+    {  $id=$task->input('id');
+       $task1= aditi::where('id','=',$id)->delete();
+       if($task1)  
+        {  $task2 = aditi::all();
+           return $task2;
+        }
+      
+    }
 
 }
