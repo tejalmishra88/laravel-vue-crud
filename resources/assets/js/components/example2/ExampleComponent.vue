@@ -8,7 +8,7 @@
 
                     <div class="panel-body">
                        <ul class="list-group">
-                           <li class="list-group-item"  v-for="a in aditi">{{a.id}} - {{a.name}} - {{a.name1}} <span class=
+                           <li class="list-group-item"  v-for="a in aditi">{{a.id}} - {{a.name}} - {{a.name1}}- {{a.created_at}} - {{a.updated_at}}<span class=
                                "pull-right"><a data-toggle="modal" href="#editmodal1" class="btn btn-primary btn-xs" @click="getRecord(a.id)">edit</a> | 
                            <button @click="delRecord(a.id)" class="btn btn-danger btn-xs">Delete</button> | <a data-toggle="modal" href="#viewmodal1" class="btn btn-info btn-xs" @click="getRecord(a.id)">Preview</a></span></li>
                        </ul>
